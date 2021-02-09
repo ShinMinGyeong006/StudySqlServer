@@ -53,7 +53,7 @@ update testTBL1
 --delete
 delete from testTBL1 where id=5;
 
-
+-----연습문제-----
 use BikeStores
 select * from sales.customers
 where last_name like 'S%'

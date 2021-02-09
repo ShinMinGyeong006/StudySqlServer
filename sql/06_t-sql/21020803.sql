@@ -120,7 +120,7 @@ select count(*) as '구매내역수' from buyTbl;
 
 
 --잘못된 필터링
-select userid, sum(price*amount) as '아이디별 구매금액',
+select userid, sum(price*amount) as '아이디별 구매금액'
   from buyTbl
  --where sum(price*amount)>1000
  group by userid 
