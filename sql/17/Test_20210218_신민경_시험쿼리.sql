@@ -60,6 +60,36 @@ select
     on b.division = d.division
  where b.Division = 'B002';
 
+ --3-1번 다르게 풀기 1
+
+ select 
+	   b.Idx  번호,
+	   b.Division  '장르 번호',
+	   d.Names  장르,
+	   b.Names  책제목,
+	   b.Author  저자
+  from bookstbl  b   --inner join대신에 콤마로 연결
+      ,divtbl  d
+ where b.division = d.division --on을 쓸 수 없으므로 where로 교체, where절이 두 개면 안되니까 and 로 연결
+   and b.Division = 'B002';
+
+
+
+ --3-1번 다르게 풀기2 (서브쿼리 이용)
+
+ select 
+	   b.Idx as '번호',
+	   b.Division as '장르번호',
+	   --d.Names as '장르',
+	   (select names from divtbl where Division=b.Division) as 장르,
+	   b.Names as '책제목',
+	   b.Author as '저자'
+  from bookstbl as b
+ where b.Division = 'B002';
+
+
+
+
  --3-2번
 
 use bookrentalshop;
@@ -74,6 +104,11 @@ select
  left outer join rentaltbl as r
    on m.Idx=r.memberIdx
 where r.rentalDate is null;
+
+
+ --3-2번 다르게 풀기 
+
+
 
 --4-1번 
 use bookrentalshop;
@@ -119,3 +154,4 @@ select
   inner join bookstbl as b
     on d.Division=b.Division
  group by rollup (d.Names);
+
